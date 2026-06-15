@@ -1,0 +1,60 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  orders    Order[]
+}
+
+model Restaurant {
+  id        Int      @id @default(autoincrement())
+  name      String
+  imageUrl  String?
+  category  String
+  createdAt DateTime @default(now())
+  menus     Menu[]
+  orders    Order[]
+}
+
+model Menu {
+  id           Int         @id @default(autoincrement())
+  restaurantId Int
+  restaurant   Restaurant  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  name         String
+  price        Int
+  imageUrl     String?
+  description  String?
+  orderItems   OrderItem[]
+}
+
+model Order {
+  id           Int         @id @default(autoincrement())
+  userId       Int
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  restaurantId Int
+  restaurant   Restaurant  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  totalPrice   Int
+  status       String      @default("PENDING") // PENDING, DELIVERING, COMPLETED
+  createdAt    DateTime    @default(now())
+  orderItems   OrderItem[]
+}
+
+model OrderItem {
+  id        Int   @id @default(autoincrement())
+  orderId   Int
+  order     Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuId    Int
+  menu      Menu  @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  quantity  Int
+  price     Int   // Price at the time of order
+}
