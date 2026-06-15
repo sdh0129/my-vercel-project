@@ -38,7 +38,7 @@ async function main() {
         create: [
           { name: "교촌 허니콤보", price: 23000, description: "달콤한 허니소스와 바삭한 날개/다리의 만남", imageUrl: "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=200&auto=format&fit=crop&q=60" },
           { name: "교촌 레드콤보", price: 23000, description: "청양 홍고추의 매콤알싸한 맛", imageUrl: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=200&auto=format&fit=crop&q=60" },
-          { name: "웨지감자", price: 4500, description: "고소하고 포슬포슬한 감자튀김", imageUrl: "https://images.unsplash.com/photo-1600950390317-7b6b7720c18d?w=200&auto=format&fit=crop&q=60" }
+          { name: "웨지감자", price: 4500, description: "고소하고 포슬포슬한 감자튀김", imageUrl: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&auto=format&fit=crop&q=60" }
         ]
       }
     }
